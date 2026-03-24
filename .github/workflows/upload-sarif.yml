@@ -1,0 +1,23 @@
+name: "Upload SARIF"
+
+on:
+  push:
+    branches: [ "main" ]  # 當程式碼推送到 main 分支時觸發
+  workflow_dispatch:      # 允許手動點擊按鈕執行
+
+jobs:
+  upload-sarif:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write  # 必須要有寫入安全事件的權限
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          # 請確保這裡的檔名與您上傳的 SARIF 檔案名稱一致
+          sarif_file: eightball.fpr.sarif
+          category: my-analysis-tool
