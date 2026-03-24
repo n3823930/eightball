@@ -19,5 +19,5 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         with:
           # 請確保這裡的檔名與您上傳的 SARIF 檔案名稱一致
-          sarif_file: eightball.fpr.sarif
+          sarif_file: eightball.sarif
           category: my-analysis-tool
